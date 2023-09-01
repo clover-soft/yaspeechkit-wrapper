@@ -10,6 +10,7 @@ class Settings:
     def load_config():
         with open('.settings.json') as file:
             Settings.config_dict = json.load(file)
+        Settings.logger.info(Settings.config_dict)
 
 
     @staticmethod
@@ -18,7 +19,7 @@ class Settings:
     
     @staticmethod
     def get_api_key() -> str:
-        return Settings.config_dict['api_key']
+        return Settings.config_dict['key']
     
     @staticmethod
     def get_wav_files_path() -> str:
