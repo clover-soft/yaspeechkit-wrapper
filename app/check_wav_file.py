@@ -4,12 +4,6 @@ from settings import Settings
 import logging
 
 logger = logging.getLogger("yandex speech kit wrapper app")
-# Аутентификация через API-ключ.
-configure_credentials(
-   yandex_credentials=creds.YandexCredentials(
-      api_key=Settings.get_api_key(),
-   )
-)
 
 def recognize(audio):
    model = model_repository.recognition_model()
@@ -29,6 +23,10 @@ def check_patterns(key):
    filename = f"{Settings.get_wav_files_path()}/{key}.wav"
    try_count = int(params[1])
    logger.info(Settings.get_api_key())
+   # Аутентификация через API-ключ.
+   configure_credentials(yandex_credentials=creds.YandexCredentials(api_key=Settings.get_api_key(),)
+)
+
    recognize(filename)
    return "repeat"
 
