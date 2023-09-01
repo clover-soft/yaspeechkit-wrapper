@@ -15,11 +15,11 @@ jobs:
 
     - name: Remove Python Files
       run: |
-        find /srv/scripts/backend-yaspeechkit/app ! -name '.settings.json' -type f -delete
+        find /srv/scripts/backend-yaspeech/app ! -name '.settings.json' -type f -delete
 
     - name: Copy Scripts to Local Directory
       run: |
-        cp -r app/* /srv/scripts/backend-yaspeechkit/app
+        cp -r app/* /srv/scripts/backend-yaspeech/app
 
     - name: Restart filestore Container
       run: |
