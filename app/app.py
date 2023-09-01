@@ -11,6 +11,28 @@ logging.basicConfig(handlers=[handler], level=logging.INFO)
 logger = logging.getLogger('yandex speech kit wrapper app')
 logger.info("Start worker...")
 
+
+@app.before_request
+def log_request():
+    """Log incoming requests."""
+    log_str = f"[{request.headers.get('X-Forwarded-For', request.remote_addr)}] "
+    log_str += f"[{request.path}] "
+    log_str += f"[{str(request.args)}] "
+    log_str += f"[{request.get_data(as_text=True)}] "
+    logger.info(log_str)
+
+
+@app.after_request
+def log_response(response):
+    """Log outgoing responses."""
+    log_str = f"[{request.headers.get('X-Forwarded-For', request.remote_addr)}] "
+    log_str += f"[{request.path}] => "
+    log_str += f"[{response.status}] "
+    log_str += f"Response Body: {response.get_data(as_text=True)}"
+    log_str += f"Request status: {response.status}"
+    logger.info(log_str)
+    return response
+
 # Обработчик для неопределенных маршрутов
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
