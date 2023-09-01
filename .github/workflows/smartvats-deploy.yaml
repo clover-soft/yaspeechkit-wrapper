@@ -1,0 +1,27 @@
+name: SMARTVATS YASPEECHKIT-WRAPPER deploy scripts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, Linux, X64, smartvats]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Remove Python Files
+      run: |
+        find /srv/scripts/backend-yaspeechkit/app ! -name '.settings.json' -type f -delete
+
+    - name: Copy Scripts to Local Directory
+      run: |
+        cp -r app/* /srv/scripts/backend-yaspeechkit/app
+
+    - name: Restart filestore Container
+      run: |
+        cd /srv
+        docker-compose restart backend-yaspeechkit
