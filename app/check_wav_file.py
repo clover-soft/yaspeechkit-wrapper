@@ -1,7 +1,9 @@
 from speechkit import model_repository, configure_credentials, creds
 from speechkit.stt import AudioProcessingType
 from settings import Settings
-logger = Settings.get_logger()
+import logging
+
+logger = logging.getLogger("yandex speech kit wrapper app")
 # Аутентификация через API-ключ.
 configure_credentials(
    yandex_credentials=creds.YandexCredentials(

@@ -4,7 +4,6 @@ import logging
 class Settings:
     config_dict = {}
     crm_user_cache = {}
-    logger = None
 
     @staticmethod
     def load_config():
@@ -25,13 +24,5 @@ class Settings:
     @staticmethod
     def get_wav_files_path() -> str:
         return Settings.config_dict['wav_files_path']
-    
-    @staticmethod
-    def get_logger():
-        return Settings.logger
-    
-    @staticmethod
-    def set_logger(logger):
-        Settings.logger = logger
     
     

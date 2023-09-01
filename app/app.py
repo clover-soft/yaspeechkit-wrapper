@@ -14,8 +14,6 @@ formatter = logging.Formatter('[%(asctime)s][%(name)s] => %(message)s')
 handler.setFormatter(formatter)
 logging.basicConfig(handlers=[handler], level=logging.INFO)
 logger = logging.getLogger('yandex speech kit wrapper app')
-Settings.set_logger(logger)
-
 logger.info("Start worker...")
 
 
