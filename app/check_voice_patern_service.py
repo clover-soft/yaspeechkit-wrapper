@@ -20,7 +20,7 @@ def recognize(audio):
     # Распознавание речи в указанном аудиофайле и вывод результатов в консоль.
     result = model.transcribe_file(audio)
     for c, res in enumerate(result):
-        logger.info(res)
+        logger.info(res.raw_text)
 
 
 def check_voice_pattern():
