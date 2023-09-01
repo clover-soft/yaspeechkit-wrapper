@@ -39,7 +39,7 @@ def log_response(response):
 
 from check_voice_patern_service import check_voice_pattern
 @app.route('/check_voice_pattern')
-def download(key):
+def check_voice_pattern_request():
     IPAccessChecker.check_access()
     return check_voice_pattern()
 
