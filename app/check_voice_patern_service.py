@@ -19,9 +19,8 @@ def recognize(audio):
 
     # Распознавание речи в указанном аудиофайле и вывод результатов в консоль.
     result = model.transcribe_file(audio)
-    logger.info(result)
-   #  for c, res in enumerate(result):
-   #      logger.info(res.raw_text)
+    for c, res in enumerate(result):
+        logger.info(res)
 
 
 def check_voice_pattern():
