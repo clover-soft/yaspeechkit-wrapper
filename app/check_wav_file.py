@@ -26,7 +26,7 @@ def recognize(audio):
     
 def check_patterns(key):
    params = key.split("_")
-   filename = f"{Settings.get_wav_files_path()}/{params[0]}.wav"
+   filename = f"{Settings.get_wav_files_path()}/{key}.wav"
    try_count = int(params[1])
    logger.info(Settings.get_api_key())
    recognize(filename)
