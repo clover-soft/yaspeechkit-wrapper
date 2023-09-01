@@ -19,7 +19,8 @@ class Settings:
     
     @staticmethod
     def get_api_key() -> str:
-        return Settings.config_dict['key']
+        Settings.logger.info(Settings.config_dict)
+        return "xfdfgd" #Settings.config_dict['key']
     
     @staticmethod
     def get_wav_files_path() -> str:
