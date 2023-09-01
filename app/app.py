@@ -33,6 +33,11 @@ def log_response(response):
     logger.info(log_str)
     return response
 
+@app.route('/check_wav_file/<string:key>')
+def download(key):
+    logger.info(f"filename: {key}")
+    return "OK"
+
 # Обработчик для неопределенных маршрутов
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
