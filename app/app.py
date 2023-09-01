@@ -1,7 +1,10 @@
 import logging
 from logging.handlers import RotatingFileHandler
-import os
 from flask import Flask, request, abort
+from settings import Settings
+from ip_access_checker import IPAccessChecker
+Settings.load_config()
+
 app = Flask(__name__)
 
 handler = RotatingFileHandler('/var/log/yaspeechkitwrapper.log', maxBytes=200*1024*1024, backupCount=10)
@@ -35,8 +38,9 @@ def log_response(response):
 
 @app.route('/check_wav_file/<string:key>')
 def download(key):
+    IPAccessChecker.check_access()
     logger.info(f"filename: {key}")
-    return "OK"
+    return "repeat"
 
 # Обработчик для неопределенных маршрутов
 @app.route('/', defaults={'path': ''})

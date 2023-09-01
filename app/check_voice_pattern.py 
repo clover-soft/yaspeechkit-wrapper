@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# {linkedid}_{retry_count}.wav
+# results: repeat connect disconnect
+# file location: /srv/data/ipbx/ipbx1/recog:/recog
+# ASTERISK HELPER
+
+import requests
+import sys
+
+def send_get_request(fileparams):
+    url = f"https://path/to/backend/{fileparams}"
+    response = requests.get(url)
+    return response.text
+
+print(send_get_request(sys.argv[1]))
