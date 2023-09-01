@@ -1,3 +1,4 @@
+from check_wav_file import check_patterns
 import logging
 from logging.handlers import RotatingFileHandler
 from flask import Flask, request, abort
@@ -7,11 +8,13 @@ Settings.load_config()
 
 app = Flask(__name__)
 
-handler = RotatingFileHandler('/var/log/yaspeechkitwrapper.log', maxBytes=200*1024*1024, backupCount=10)
+handler = RotatingFileHandler(
+    '/var/log/yaspeechkitwrapper.log', maxBytes=200*1024*1024, backupCount=10)
 formatter = logging.Formatter('[%(asctime)s][%(name)s] => %(message)s')
 handler.setFormatter(formatter)
 logging.basicConfig(handlers=[handler], level=logging.INFO)
 logger = logging.getLogger('yandex speech kit wrapper app')
+Settings.logger = logger
 logger.info("Start worker...")
 
 
@@ -36,13 +39,15 @@ def log_response(response):
     logger.info(log_str)
     return response
 
+
 @app.route('/check_wav_file/<string:key>')
 def download(key):
     IPAccessChecker.check_access()
-    logger.info(f"filename: {key}")
-    return "repeat"
+    return check_patterns(key)
 
 # Обработчик для неопределенных маршрутов
+
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def unqnown_request(path):
