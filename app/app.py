@@ -4,6 +4,7 @@ from logging.handlers import RotatingFileHandler
 from flask import Flask, request, abort
 from settings import Settings
 from ip_access_checker import IPAccessChecker
+Settings.load_config()
 
 app = Flask(__name__)
 
@@ -14,7 +15,6 @@ handler.setFormatter(formatter)
 logging.basicConfig(handlers=[handler], level=logging.INFO)
 logger = logging.getLogger('yandex speech kit wrapper app')
 Settings.logger = logger
-Settings.load_config()
 
 logger.info("Start worker...")
 
