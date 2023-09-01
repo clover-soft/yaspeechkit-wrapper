@@ -18,7 +18,7 @@ class Settings:
     
     @staticmethod
     def get_api_key() -> str:
-        return Settings.config_dict['api_key']
+        return "xcxcxc" #Settings.config_dict['api_key']
     
     @staticmethod
     def get_wav_files_path() -> str:
