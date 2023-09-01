@@ -25,4 +25,20 @@ class Settings:
     def get_wav_files_path() -> str:
         return Settings.config_dict['wav_files_path']
     
+    @staticmethod
+    def get_max_session_time() -> int:
+        return Settings.config_dict['max_session_time']
+    
+    @staticmethod
+    def get_force_agree_patterns() -> list:
+        return Settings.config_dict['force_agree_patterns']
+    
+    @staticmethod
+    def get_agree_patterns() -> list:
+        return Settings.config_dict['agree_patterns']
+    
+    @staticmethod
+    def get_disagree_patterns() -> list:
+        return Settings.config_dict['force_patterns']
+    
     

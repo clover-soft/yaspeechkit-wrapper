@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# {linkedid}_{retry_count}.wav
-# results: repeat connect disconnect
-# file location: /srv/data/ipbx/ipbx1/recog:/recog
 # ASTERISK HELPER
+# {linkedid}_{retry_count}.wav
+# results: repeat|connect|disconnect
 
 import requests
 import sys
 
-def send_get_request(fileparams):
-    url = f"https://path/to/backend/{fileparams}"
+def send_get_request(linkedid: str, retry_count: int):
+    url = f"https://backend.api.address/check_voice_pattern?linkedid={linkedid}&retry_count={retry_count}"
     response = requests.get(url)
     return response.text
 
-print(send_get_request(sys.argv[1]))
+params = sys.argv[1].split("_")
+linkedid = params[0]
+retry_count = params[1]
+
+print(send_get_request(linkedid, retry_count))

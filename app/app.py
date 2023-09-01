@@ -1,4 +1,3 @@
-from check_wav_file import check_patterns
 import logging
 from logging.handlers import RotatingFileHandler
 from flask import Flask, request, abort
@@ -38,11 +37,11 @@ def log_response(response):
     logger.info(log_str)
     return response
 
-
-@app.route('/check_wav_file/<string:key>')
+from check_voice_patern_service import check_voice_pattern
+@app.route('/check_voice_pattern')
 def download(key):
     IPAccessChecker.check_access()
-    return check_patterns(key)
+    return check_voice_pattern()
 
 # Обработчик для неопределенных маршрутов
 
