@@ -24,4 +24,4 @@ jobs:
     - name: Restart filestore Container
       run: |
         cd /srv
-        docker-compose restart backend-yaspeechkit
+        docker-compose restart backend-yaspeech
