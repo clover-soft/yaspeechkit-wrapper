@@ -30,4 +30,8 @@ class Settings:
     def get_logger():
         return Settings.logger
     
+    @staticmethod
+    def set_logger(logger):
+        Settings.logger = logger
+    
     
