@@ -39,6 +39,6 @@ class Settings:
     
     @staticmethod
     def get_disagree_patterns() -> list:
-        return Settings.config_dict['force_patterns']
+        return Settings.config_dict['disagree_patterns']
     
     
