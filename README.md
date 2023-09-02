@@ -21,7 +21,7 @@
 Файл .settings.json должен располагаться в папке app
 ``` json
 {
-    "api_key":"AIzaSyA2Gx8lJ8i0Y8YJ7rW6WVl9wqP7gQv5zVc",
+    "api_key":"YOUR_API_KEY",
     "asterisk_server_ip":"38.0.101.76",
     "wav_files_path":"/wav",
     "max_session_time":60,
