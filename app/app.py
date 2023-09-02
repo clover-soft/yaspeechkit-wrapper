@@ -37,11 +37,12 @@ def log_response(response):
     logger.info(log_str)
     return response
 
-from check_voice_patern_service import check_voice_pattern
+from voice_prompt_behavior import voice_prompt_behavior
 @app.route('/check_voice_pattern')
 def check_voice_pattern_request():
     IPAccessChecker.check_access()
-    return check_voice_pattern()
+    instance = voice_prompt_behavior()
+    return instance.get_behavior()
 
 # Обработчик для неопределенных маршрутов
 
