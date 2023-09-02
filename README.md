@@ -18,7 +18,7 @@
  `На каждом этапе принимается решение`
 
 ## Инструкция по настройке
-Файл .settings.json должен разсполагаться в папке app
+Файл .settings.json должен располагаться в папке app
 ``` json
 {
     "api_key":"AIzaSyA2Gx8lJ8i0Y8YJ7rW6WVl9wqP7gQv5zVc",
