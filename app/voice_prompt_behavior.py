@@ -19,8 +19,10 @@ class voice_prompt_behavior:
         self.max_retry_count = Settings.get_config_param('max_retry_count')
         self.call_time = int(self.linkedid.split(".")[0])
         self.session_time = time.time() - self.call_time
-        credentials = creds.YandexCredentials(api_key=Settings.get_config_param('api_key'),)
+        self.api_key = Settings.get_config_param('api_key')
+        credentials = creds.YandexCredentials(api_key=self.api_key,)
         configure_credentials(yandex_credentials=credentials)
+        self.logger.info(f"api key: {self.api_key}")
 
     def get_behavior(self) -> str:
         model = model_repository.recognition_model()
