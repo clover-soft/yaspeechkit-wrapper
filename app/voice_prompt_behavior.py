@@ -22,7 +22,6 @@ class voice_prompt_behavior:
         self.api_key = Settings.get_config_param('key')
         credentials = creds.YandexCredentials(api_key=self.api_key,)
         configure_credentials(yandex_credentials=credentials)
-        self.logger.info(f"api key: {self.api_key}")
 
     def get_behavior(self) -> str:
         model = model_repository.recognition_model()
