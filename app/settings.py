@@ -13,8 +13,8 @@ class Settings:
             Settings.config_dict = json.load(file)
 
     @staticmethod
-    def get_config_param(param):
-        if param in Settings.config_dict:
-            return Settings.config_dict[param]
+    def get_config_param(key):
+        if key in Settings.config_dict.keys():
+            return Settings.config_dict[key]
         return None
     
