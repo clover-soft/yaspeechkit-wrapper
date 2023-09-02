@@ -3,7 +3,7 @@ from speechkit.stt import AudioProcessingType
 from settings import Settings
 import logging
 import time
-from flask import request, abort
+from flask import request
 
 
 class voice_prompt_behavior:
@@ -19,7 +19,7 @@ class voice_prompt_behavior:
         self.max_retry_count = Settings.get_config_param('max_retry_count')
         self.call_time = int(self.linkedid.split(".")[0])
         self.session_time = time.time() - self.call_time
-        self.api_key = Settings.get_config_param('api_key')
+        self.api_key = Settings.get_config_param('key')
         credentials = creds.YandexCredentials(api_key=self.api_key,)
         configure_credentials(yandex_credentials=credentials)
         self.logger.info(f"api key: {self.api_key}")

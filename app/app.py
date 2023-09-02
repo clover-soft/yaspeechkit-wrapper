@@ -14,7 +14,6 @@ handler.setFormatter(formatter)
 logging.basicConfig(handlers=[handler], level=logging.INFO)
 logger = logging.getLogger('yandex speech kit wrapper app')
 logger.info("Start worker...")
-logger.info(f"Settings: {Settings.config_dict}")
 
 
 @app.before_request
