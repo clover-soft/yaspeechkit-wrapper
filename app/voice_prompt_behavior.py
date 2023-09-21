@@ -13,7 +13,8 @@ class voice_prompt_behavior:
         self.linkedid = request.args.get("linkedid")
         self.retry_count = int(request.args.get("retry_count"))
         self.audio = f"{Settings.get_config_param('wav_files_path')}/{self.linkedid}_{self.retry_count}.wav"
-        self.force_agree_patterns = Settings.get_config_param('force_agree_patterns')
+        self.force_agree_patterns = Settings.get_config_param(
+            'force_agree_patterns')
         self.agree_patterns = Settings.get_config_param('agree_patterns')
         self.disagree_patterns = Settings.get_config_param('disagree_patterns')
         self.max_session_time = Settings.get_config_param('max_session_time')
@@ -23,12 +24,14 @@ class voice_prompt_behavior:
         self.api_key = Settings.get_config_param('key')
         credentials = creds.YandexCredentials(api_key=self.api_key,)
         configure_credentials(yandex_credentials=credentials)
+
     def wave_file_exists(self):
         if not os.path.exists(self.audio):  # Проверяем, существует ли файл
             return False
         if os.path.getsize(self.audio) < 500:  # Проверяем размер файла
             return False
         return True
+
     def get_behavior(self) -> str:
         if not self.wave_file_exists():
             if self.retry_count <= self.max_retry_count:
@@ -40,15 +43,18 @@ class voice_prompt_behavior:
         model.audio_processing_type = AudioProcessingType.Full
         result = model.transcribe_file(self.audio)
         self.logger.info(result)
-        def getNextPattern(patterns_list,text,pattern_layer):
-            nextPattern = next((pattern for pattern in patterns_list if pattern in text), None)
+
+        def getNextPattern(patterns_list, text, pattern_layer):
+            nextPattern = next(
+                (pattern for pattern in patterns_list if pattern in text), None)
             if nextPattern is not None:
-                self.logger.info(f"Found {pattern_layer} pattern: {nextPattern}")
+                self.logger.info(
+                    f"Found {pattern_layer} pattern: {nextPattern}")
                 return True
             return False
         self.logger.info(len(result))
         for c, res in enumerate(result):
-            if str(c)=='' and len(result)==1:
+            if str(c).strip() == '' and len(result) == 1:
                 return 'nospeech'
             if getNextPattern(self.force_agree_patterns, res.raw_text, 'force_agree'):
                 return 'connect'
@@ -63,4 +69,3 @@ class voice_prompt_behavior:
             self.logger.info("Retry count over")
             return 'disconnect'
         return 'repeat'
-
