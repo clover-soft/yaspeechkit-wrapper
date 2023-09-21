@@ -32,7 +32,7 @@ class voice_prompt_behavior:
     def get_behavior(self) -> str:
         if not self.wave_file_exists():
             if self.retry_count <= self.max_retry_count:
-                return 'repeat'
+                return 'nospeech'
             return 'disconnect'
         model = model_repository.recognition_model()
         model.model = 'general'
