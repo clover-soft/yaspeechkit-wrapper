@@ -39,6 +39,7 @@ class voice_prompt_behavior:
         model.language = 'ru-RU'
         model.audio_processing_type = AudioProcessingType.Full
         result = model.transcribe_file(self.audio)
+        self.logger.info(result)
         def getNextPattern(patterns_list,text,pattern_layer):
             nextPattern = next((pattern for pattern in patterns_list if pattern in text), None)
             if nextPattern is not None:
