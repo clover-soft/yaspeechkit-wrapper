@@ -23,14 +23,14 @@ class voice_prompt_behavior:
         self.api_key = Settings.get_config_param('key')
         credentials = creds.YandexCredentials(api_key=self.api_key,)
         configure_credentials(yandex_credentials=credentials)
-    def wave_file_exists(file_path):
-        if not os.path.exists(file_path):  # Проверяем, существует ли файл
+    def wave_file_exists(self):
+        if not os.path.exists(self.audio):  # Проверяем, существует ли файл
             return False
-        if os.path.getsize(file_path) < 500:  # Проверяем размер файла
+        if os.path.getsize(self.audio) < 500:  # Проверяем размер файла
             return False
         return True
     def get_behavior(self) -> str:
-        if not self.wave_file_exists(self.audio):
+        if not self.wave_file_exists():
             if self.retry_count <= self.max_retry_count:
                 return 'repeat'
             return 'disconnect'
