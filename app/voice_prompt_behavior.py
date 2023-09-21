@@ -3,6 +3,7 @@ from speechkit.stt import AudioProcessingType
 from settings import Settings
 import logging
 import time
+import os
 from flask import request
 
 
@@ -22,8 +23,17 @@ class voice_prompt_behavior:
         self.api_key = Settings.get_config_param('key')
         credentials = creds.YandexCredentials(api_key=self.api_key,)
         configure_credentials(yandex_credentials=credentials)
-
+    def wave_file_exists(file_path):
+        if not os.path.exists(file_path):  # Проверяем, существует ли файл
+            return False
+        if os.path.getsize(file_path) < 500:  # Проверяем размер файла
+            return False
+        return True
     def get_behavior(self) -> str:
+        if not self.wave_file_exists(self.audio):
+            if self.retry_count <= self.max_retry_count:
+                return 'repeat'
+            return 'disconnect'
         model = model_repository.recognition_model()
         model.model = 'general'
         model.language = 'ru-RU'
