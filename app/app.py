@@ -42,7 +42,9 @@ from voice_prompt_behavior import voice_prompt_behavior
 def check_voice_pattern_request():
     IPAccessChecker.check_access()
     instance = voice_prompt_behavior()
-    return instance.get_behavior()
+    result = instance.get_behavior()
+    logger.info(result)
+    return result
 
 # Обработчик для неопределенных маршрутов
 
