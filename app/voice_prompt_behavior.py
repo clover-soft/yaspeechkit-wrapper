@@ -54,7 +54,7 @@ class voice_prompt_behavior:
             return False
         self.logger.info(len(result))
         for c, res in enumerate(result):
-            if str(c).strip() == '' and len(result) == 1:
+            if str(res.raw_text).strip() == '' and len(result) == 1:
                 return 'nospeech'
             if getNextPattern(self.force_agree_patterns, res.raw_text, 'force_agree'):
                 return 'connect'
