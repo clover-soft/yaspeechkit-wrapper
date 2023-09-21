@@ -10,7 +10,7 @@ class voice_prompt_behavior:
     def __init__(self) -> None:
         self.logger = logging.getLogger(__name__)
         self.linkedid = request.args.get("linkedid")
-        self.retry_count = request.args.get("retry_count")
+        self.retry_count = int(request.args.get("retry_count"))
         self.audio = f"{Settings.get_config_param('wav_files_path')}/{self.linkedid}_{self.retry_count}.wav"
         self.force_agree_patterns = Settings.get_config_param('force_agree_patterns')
         self.agree_patterns = Settings.get_config_param('agree_patterns')
