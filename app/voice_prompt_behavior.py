@@ -46,11 +46,10 @@ class voice_prompt_behavior:
                 self.logger.info(f"Found {pattern_layer} pattern: {nextPattern}")
                 return True
             return False
-        if result is None or len(result) == 0:
-            return 'nospeech'
         self.logger.info(len(result))
         for c, res in enumerate(result):
-            self.logger.info(res.raw_text)
+            if str(c)=='' and len(result)==1:
+                return 'nospeech'
             if getNextPattern(self.force_agree_patterns, res.raw_text, 'force_agree'):
                 return 'connect'
             elif getNextPattern(self.disagree_patterns, res.raw_text, 'disagree'):
