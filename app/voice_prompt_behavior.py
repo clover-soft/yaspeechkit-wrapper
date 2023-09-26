@@ -56,9 +56,9 @@ class voice_prompt_behavior:
         text = ''
 
         for c, res in enumerate(result):
-            text += res.norm_text
+            text += c.normalized_text
 
-        if str(res.norm_text).strip() == '' and len(result) == 1:
+        if str(text).strip() == '' and len(result) == 1:
             return 'nospeech'
         else:
             from analizator import Analizator
@@ -71,3 +71,9 @@ class voice_prompt_behavior:
         #     self.logger.info("Retry count over")
         #     return 'disconnect'
         # return 'repeat'
+# sox agreement.wav -r 8000 -b 16 -c 1 agreement_.wav
+# sox allo_not_hear.wav -r 8000 -b 16 -c 1 allo_not_hear_.wav
+# sox allo_zdravst.wav -r 8000 -b 16 -c 1 allo_zdravst_.wav
+# sox greatings.wav -r 8000 -b 16 -c 1 greatings_.wav
+# sox reject.wav -r 8000 -b 16 -c 1 reject_.wav
+# sox small_time.wav -r 8000 -b 16 -c 1 small_time_.wav
