@@ -5,6 +5,7 @@ import pickle
 class Analizator:
     def __init__(self):
         self.train_data = [
+            ("Могу", "positive"),
             ("Да, отлично", "positive"),
             ("Хорошо, а сколько времени займет?", "question"),
             ("Нет, не очень хорошо", "negative"),
