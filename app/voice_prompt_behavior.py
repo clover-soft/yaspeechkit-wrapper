@@ -53,19 +53,21 @@ class voice_prompt_behavior:
                 return True
             return False
         self.logger.info(len(result))
+        text = ''
+
         for c, res in enumerate(result):
-            if str(res.raw_text).strip() == '' and len(result) == 1:
-                return 'nospeech'
-            if getNextPattern(self.force_agree_patterns, res.raw_text, 'force_agree'):
-                return 'connect'
-            elif getNextPattern(self.disagree_patterns, res.raw_text, 'disagree'):
-                return 'disconnect'
-            elif getNextPattern(self.agree_patterns, res.raw_text, 'agree'):
-                return 'connect'
-        if self.session_time > self.max_session_time:
-            self.logger.info("Session time over")
-            return 'disconnect'
-        if self.retry_count >= self.max_session_time:
-            self.logger.info("Retry count over")
-            return 'disconnect'
-        return 'repeat'
+            text += res.norm_text
+
+        if str(res.norm_text).strip() == '' and len(result) == 1:
+            return 'nospeech'
+        else:
+            from analizator import Analizator
+            anl = Analizator()
+            return anl.classify(text)
+        # if self.session_time > self.max_session_time:
+        #     self.logger.info("Session time over")
+        #     return 'disconnect'
+        # if self.retry_count >= self.max_session_time:
+        #     self.logger.info("Retry count over")
+        #     return 'disconnect'
+        # return 'repeat'
