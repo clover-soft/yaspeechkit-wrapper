@@ -94,7 +94,14 @@ class Analizator:
             ("Я подумаю над этим", "question"),
             ("Я не могу дать ответ на это", "question"),
             ("Конечно, давайте сделаем это", "positive"),
-            ("Нет, это не стоит делать", "negative")
+            ("Нет, это не стоит делать", "negative"),
+            ("Не могу, я за рулем сейчас", "negative"),
+            ("Я сейчас за рулем", "negative"),
+            ("Я сейчас за рулем, но давайте", "positive"),
+            ("Не могу сижу с ребенокм", "negative"),
+            ("У меня маленький ребенок", "negative"),
+            ("Я глуяю с ребенком, какой еще опрос", "negative"),
+            ("Я не могу сижу с ребенком", "negative"),
         ]
         self.train_features = [(self.extract_features(text), label)
                   for (text, label) in self.train_data]
