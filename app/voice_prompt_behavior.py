@@ -56,7 +56,7 @@ class voice_prompt_behavior:
         text = ''
 
         for c, res in enumerate(result):
-            text += c.normalized_text
+            text += res.normalized_text
 
         if str(text).strip() == '' and len(result) == 1:
             return 'nospeech'
