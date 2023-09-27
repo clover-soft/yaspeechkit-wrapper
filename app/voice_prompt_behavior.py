@@ -11,7 +11,7 @@ class voice_prompt_behavior:
         self.logger = logging.getLogger(__name__)
         self.linkedid = request.args.get("linkedid")
         self.retry_count = int(request.args.get("retry_count"))
-        self.audio = f"{Settings.get_config_param('wav_files_path')}/{self.linkedid}_{self.retry_count}.wav"
+        self.audio = f"{Settings.get_config_param('wav_files_path')}/r_{self.linkedid}_{self.retry_count}.wav"
         self.api_key = Settings.get_config_param('key')
         credentials = creds.YandexCredentials(api_key=self.api_key,)
         configure_credentials(yandex_credentials=credentials)
