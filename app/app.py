@@ -42,7 +42,7 @@ from voice_prompt_behavior import voice_prompt_behavior
 def check_voice_pattern_request():
     IPAccessChecker.check_access()
     instance = voice_prompt_behavior()
-    result = instance.get_behavior()
+    result = instance.excute()
     logger.info(result)
     return result
 
