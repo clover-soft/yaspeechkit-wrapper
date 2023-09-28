@@ -34,7 +34,8 @@ class voice_prompt_behavior:
         self.logger.info(result)
         text = ''
         for c, res in enumerate(result):
-            text += res.normalized_text
+            # text += res.normalized_text
+            text += res.raw_text
         return text
 
 # sox small_time.wav -r 8000 -b 16 -c 1 small_time_.wav
